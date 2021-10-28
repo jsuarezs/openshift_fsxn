@@ -1,0 +1,15 @@
+#./tridentctl create backend --filename backend-ontap-nas.yaml -n trident
+{
+    "version": 1,
+    "storageDriverName": "ontap-nas",
+    "backendName": "BackendForNAS",
+    "managementLIF": "management.fs-021fead726e835a84.fsx.eu-central-1.amazonaws.com",
+    "dataLIF": "svm-0457d2d8753fc1bb7.fs-021fead726e835a84.fsx.eu-central-1.amazonaws.com",
+    "svm": "svm_pcs-emea-Javi-k8s_v2",
+    "username": "fsxadmin",
+    "password": "netapp00",
+     "limitVolumeSize": "50Gi",
+      "defaults": {
+          "spaceReserve": "none",
+                   }
+}
