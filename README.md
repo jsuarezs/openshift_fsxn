@@ -18,5 +18,5 @@ NetApp is a CNCF co-funder member and this implies the maturity of NetApp soluti
 
 Reference high-level view:
 
-<img width="1136" alt="Screen Shot 2021-11-08 at 14 59 49" src="https://user-images.githubusercontent.com/59535705/140754953-4521d6eb-1de2-4179-9c92-377a5408e272.png">
+<img width="821" alt="Screen Shot 2021-11-08 at 15 01 39" src="https://user-images.githubusercontent.com/59535705/140755256-a7b0806b-4afa-4618-8cb1-78fc94540b83.png">
 
