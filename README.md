@@ -29,4 +29,4 @@ For better understanding about how ROSA works take a look around [ROSA docs](htt
 
 And finally go around Trident resources before deploying it so you will understand all the concepts before going steps further -> [Trident docs](https://github.com/NetApp/trident)
 
-Click [here](0-Initial_setup/README-initial.md) to follow the steps in order to do the initial setup and deploy Trident inside ROSA and next steps.
+Click [here](0-Initial_setup/README-inital.md) to follow the steps in order to do the initial setup and deploy Trident inside ROSA and next steps.
