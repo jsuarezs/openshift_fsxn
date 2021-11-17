@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: vol11
+  annotations:
+     trident.netapp.io/snapshotPolicy: "default"
+     trident.netapp.io/snapshotDirectory: "true"
+     trident.netapp.io/reclaimPolicy: "Retain"
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nas
+  resources:
+    requests:
+      storage: 6Gi

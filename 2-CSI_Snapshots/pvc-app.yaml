@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: application
+  namespace: app
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: nas
