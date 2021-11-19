@@ -133,4 +133,4 @@ Congrats! Astra Trident was deployed succesfully in ROSA cluster. See the next s
 
 Ready! 
 
-Now we can use AWS FSx for ONTAP service as persistent stogare so the next step will be create StorageClasses and the first PVs [here.](1-FSx_ONTAP_PVs/README-PVs.md)
+Now we can use AWS FSx for ONTAP service as persistent stogare so the next step will be create StorageClasses and the first PVs [here.](/1-FSx_ONTAP_PVs/README-PVs.md)
