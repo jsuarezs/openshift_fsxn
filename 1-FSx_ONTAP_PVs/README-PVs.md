@@ -49,4 +49,4 @@ Now we can use AWS FSx for ONTAP service as persistent stogare so the next step 
 
 Now we can deploy applications taking advantage of AWS FSx for ONTAP as persistent storage and get the ONTAP benefits on AWS platform.
 
-To play around with NetApp efficient Snapshots let's go to the next section[here.](/2-CSI_Snapshots/README-CSI.md)
+To play around with NetApp efficient Snapshots let's go to the next section [here.](/2-CSI_Snapshots/README-CSI.md)
