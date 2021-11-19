@@ -77,3 +77,60 @@ ip-10-0-4-70.eu-central-1.compute.internal    Ready    master         86m   v1.2
 ip-10-0-4-99.eu-central-1.compute.internal    Ready    master         87m   v1.22.0-rc.0+894a78b
 ```
 
+## Deploying NetApp Astra Trident in ROSA
+
+The first step is download and extract Astra Trident installer:
+
+````
+[ec2-user@ip-10-0-1-145 ~]$ wget wget https://github.com/NetApp/trident/releases/download/v21.07.2/trident-installer-21.07.2.tar.gz
+
+[ec2-user@ip-10-0-1-145 ~]$ tar xvf trident-installer-21.07.2.tar.gz 
+````
+
+The best practice is deploy Astra Trident in his own project in ROSA. In order to do that:
+
+`````
+[ec2-user@ip-10-0-1-145 ~]$ ./oc new-project trident --display-name "Trident"
+Now using project "trident" on server "https://api.pcsemeaos.xxx.xx.openshiftapps.com:6443".
+`````
+Before go with Astra Trident installation itself, kubectl needs to be in place because Astra Trident is completely integrated in k8s cluster so we need the service under the hood as executable service:
+
+````
+[ec2-user@ip-10-0-1-145 trident-installer]$ sudo yum update
+[ec2-user@ip-10-0-1-145 trident-installer]$ sudo yum install -y kubectl
+[ec2-user@ip-10-0-1-145 trident-installer]$ chmod +x ./kubectl
+[ec2-user@ip-10-0-1-145 trident-installer]$ sudo mv ./kubectl /usr/local/bin/kubectl
+````
+
+Let's install Astra Trident:
+
+`````
+[ec2-user@ip-10-0-1-145 trident-installer]$ ./tridentctl install -n trident
+INFO Created Kubernetes clients.                   namespace=default version=v1.22.0-rc.0+894a78b
+INFO Starting Trident installation.                namespace=trident
+...
+...
+INFO Trident REST interface is up.                 version=21.07.2
+INFO Trident installation succeeded.  
+`````
+
+Once installed, check the ROSA Console to determine Astra Trident DaemonSet and Pods in order to assure High-Availability of the deployment:
+
+![Screen Shot 2021-10-26 at 11 49 44](https://user-images.githubusercontent.com/59535705/142594845-b9eee2c6-b0ff-4fd2-949b-828fa9e229bc.png)
+
+![Screen Shot 2021-10-26 at 11 49 53](https://user-images.githubusercontent.com/59535705/142594870-f0907b35-ec9b-4cc3-85dd-89e83bacfa68.png)
+
+Congrats! Astra Trident was deployed succesfully in ROSA cluster. See the next steps to configure AWS FSx for ONTAP as persistent storage backend:
+
+````
+[ec2-user@ip-10-0-1-145 trident-installer]$ ./tridentctl create backend --filename backend-ontap-nas.json -n trident
++---------------+----------------+--------------------------------------+--------+---------+
+|     NAME      | STORAGE DRIVER |                 UUID                 | STATE  | VOLUMES |
++---------------+----------------+--------------------------------------+--------+---------+
+| BackendForNAS | ontap-nas      | b0c3e754-21aa-4bd0-8930-21bc6cc7113c | online |       0 |
++---------------+----------------+--------------------------------------+--------+---------+
+````
+
+Ready! 
+
+Now we can use AWS FSx for ONTAP service as persistent stogare so the next step will be create StorageClasses and the first PVs [here.](1-FSx_ONTAP_PVs/README-PVs.md)
